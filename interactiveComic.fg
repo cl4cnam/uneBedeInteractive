@@ -1,0 +1,83 @@
+# case 1
+#-------
+var frame1 := displayNewComicBox('frame1.png')
+waitSeconds(2)
+
+# case 2
+#-------
+var frame2 := displayNewComicBox('frame2.png')
+
+# L'entrée utilisateur est en coordonnées (320, 82), au bout de 2 secondes, la bédé considère qu'il a fini de parler.
+# L'utilisateur peut aussi appuyer sur la touche entrée pour dire qu'il a fini de parler.
+var name := getEntry(frame2, 320, 82, 2)
+
+# case 3
+#-------
+var frame3 := displayNewComicBox('frame3.png')
+# on écrit le nom entré en coordonnées (155,12)
+drawText(frame3, name, 155, 12)
+waitSeconds(2)
+
+# case 4
+#-------
+var frame4 := displayNewComicBox('frame4.png')
+waitSeconds(2)
+
+# 1ère case supplémentaire
+#-------------------------
+var frameS1 := displayNewComicBox('frameS1.png')
+waitSeconds(6)
+
+# 2ème case supplémentaire
+#-------------------------
+var frameS2 := displayNewComicBox('frameS2.png')
+waitSeconds(15)
+
+# Suppression des cases supplémentaire
+#-------------------------------------
+removeElt(frameS2)
+waitSeconds(2)
+removeElt(frameS1)
+waitSeconds(2)
+
+# case 5
+#-------
+var frame5 := displayNewComicBox('frame5.png')
+waitSeconds(2)
+
+# case 6
+#-------
+var frame6 := displayNewComicBox('frame6.png')
+drawText(frame6, name, 95, 25)
+
+var answ := getSelected(frame6, `<select>
+	<option value="">Choisis ta réponse !</option>
+	<option>de chair et d'os</option>
+	<option>avec imagination</option>
+	<option>avec amour</option>
+	<option>avec des cellules</option>
+	<option>avec Inkscape</option>
+</select>`, 260, 65)
+
+drawText(frame6, answ, 270, 53)
+
+waitSeconds(2)
+
+# case 7
+#-------
+var frame7
+
+if answ = "avec imagination":
+	frame7 := displayNewComicBox('frame7imagin.png')
+if answ = "avec amour":
+	frame7 := displayNewComicBox('frame7amour.png')
+if answ = "de chair et d'os" or answ = "avec des cellules" :
+	frame7 := displayNewComicBox('frame7incroy.png')
+if answ = "avec Inkscape" :
+	frame7 := displayNewComicBox('frame7famille.png')
+
+waitSeconds(4)
+
+# case FIN
+#---------
+displayNewComicBox('frameFin.png')
